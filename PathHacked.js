@@ -4,10 +4,17 @@
 
 const hasIncreasingDigits = (arr) => {
   let set = {i: 0, j: null, k: null}
-  // iterate through array
-  for (set.i = 0; set.i < arr.length - 2; set.i++) {
-    set = findNextLarger(arr, i, i, set)
+
+  // sort array to ascending order
+  sortedArray = arr.toSorted((a, b) => a - b)
+
+  // iterate through array, run the check item of the array ordered smallest to largest
+  for (let i = 0; i < sortedArray.length; i++) {
+    smallIndex = arr.findIndex(sortedArray[i])
+    if (smallIndex <= arr.length - 2) {
+    set = findNextLarger(arr, smallIndex, smallIndex + 1, set)
   }
+
 
   // if we have found all values, return true
   if (set.i && set.j && set.k) {
